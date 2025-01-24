@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Maxeiner"
+  given-names: "Moritz"
+  orcid: "https://orcid.org/0000-0001-9946-3010"
+- family-names: "Landgraf"
+  given-names: "Tim"
+  orcid: "https://orcid.org/0000-0003-4951-5235"
+title: "OSHRePub: Open Source Hardware Review and Publication"
+version: 0.0.3
+doi: 10.5281/zenodo.14732346
+date-released: 2025-01-24
+url: "https://github.com/open-make/OSHRePub"
