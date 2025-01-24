@@ -1,0 +1,39 @@
+# SPDX-FileCopyrightText: © 2025 Contributors to the OSHRePub project
+# SPDX-License-Identifier: AGPL-3.0-only
+
+FROM hexpm/elixir:1.16.2-erlang-26.2.3-debian-bullseye-20240311-slim
+
+LABEL authors="Moritz Maxeiner <moritz.maxeiner@fu-berlin.de>"
+
+ARG USERNAME=dev
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+
+# Create the user
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME -s /bin/bash \
+    #
+    # [Optional] Add sudo support. Omit if you don't need to install software after connecting.
+    && apt-get update \
+    && apt-get install -y sudo \
+    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
+    && chmod 0440 /etc/sudoers.d/$USERNAME
+
+RUN apt-get update && \
+    apt-get install -y gcc \
+                       make \
+                       postgresql-client \
+                       inotify-tools && \
+    apt-get clean
+
+COPY lib/*.sh /tmp/lib/
+
+ENV DOCKER_BUILDKIT=1
+ENV USERNAME=${USERNAME}
+RUN apt-get update && /bin/bash /tmp/lib/docker-in-docker-debian.sh && apt-get clean
+ENTRYPOINT ["/usr/local/share/docker-init.sh"]
+CMD ["sleep", "infinity"]
+
+RUN mkdir /data && chown -R dev:dev /data
+
+USER ${USERNAME}

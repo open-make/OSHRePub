@@ -1,0 +1,22 @@
+# SPDX-FileCopyrightText: © 2025 Contributors to the OSHRePub project
+# SPDX-License-Identifier: AGPL-3.0-only
+
+FROM debian:bookworm-slim
+
+LABEL authors="Moritz Maxeiner <moritz.maxeiner@fu-berlin.de>"
+
+RUN apt-get update && \
+    apt-get install -y \
+        python3 \
+        python3-pip \
+        python3-venv \
+        weasyprint && \
+    python3 -m venv --prompt gitbuilding ~/.venv && \
+    . ~/.venv/bin/activate && \
+    pip install gitbuilding==0.14.7 && \
+    apt-get clean
+
+COPY bin/*.sh /usr/local/bin/
+
+WORKDIR /data/in
+ENTRYPOINT ["/usr/local/bin/gitbuilding.sh"]

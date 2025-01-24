@@ -1,0 +1,10 @@
+/**
+  * SPDX-FileCopyrightText: © 2025 Contributors to the OSHRePub project
+  * SPDX-License-Identifier: AGPL-3.0-only
+  **/
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* This file is for your main application CSS */

@@ -1,0 +1,35 @@
+# SPDX-FileCopyrightText: © 2025 Contributors to the OSHRePub project
+# SPDX-License-Identifier: AGPL-3.0-only
+---
+version: '3' 
+services: 
+  app:
+    build:
+      context: .
+      dockerfile: Containerfile
+    tty: true
+    init: true 
+    privileged: true
+    volumes:
+      - home-data:/home/dev/
+      - ../..:/home/dev/workspace
+      - docker-data:/var/lib/docker
+      - app-data:/data
+    network_mode: service:db
+    env_file:
+      - secrets/env
+    user: dev
+  db:
+    image: postgres:16.2-alpine3.19
+    restart: unless-stopped
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: oshrepub_dev
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+volumes:
+  home-data:
+  postgres-data:
+  docker-data:
+  app-data:

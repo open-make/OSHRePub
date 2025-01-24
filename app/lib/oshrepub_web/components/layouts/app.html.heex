@@ -1,0 +1,37 @@
+<!--
+ - SPDX-FileCopyrightText: © 2025 Contributors to the OSHRePub project
+ - SPDX-License-Identifier: AGPL-3.0-only
+-->
+
+<!-- Static sidebar -->
+<div class="hidden lg:flex lg:flex-shrink-0" role="region">
+  <div class="flex flex-col w-64 border-r pt-5 pb-4 bg-zinc-100 border-zinc-200 dark:bg-zinc-800 dark:border-zinc-700">
+
+    <div class="h-0 flex-1 flex flex-col overflow-y-auto">
+      <!-- Navigation -->
+      <nav class="px-3 mt-6">
+        <%= if @current_account do %>
+          <.sidebar_nav_links current_account={@current_account} active_tab={@active_tab} />
+        <% end %>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<!-- Main column -->
+<div class="flex flex-col w-0 flex-1 overflow-hidden">
+
+  <!-- Search header -->
+  <!--
+  <div
+    class="relative z-10 flex-shrink-0 flex h-16 bg-white border-b border-zinc-200 lg:hidden"
+    role="navigation"
+  >
+  </div>
+  -->
+
+  <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none bg-zinc-50 dark:bg-zinc-900">
+    <.flash_group flash={@flash} />
+    <%= @inner_content %>
+  </main>
+</div>

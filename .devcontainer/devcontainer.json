@@ -1,0 +1,21 @@
+/**
+  * SPDX-FileCopyrightText: © 2025 Contributors to the OSHRePub project
+  * SPDX-License-Identifier: AGPL-3.0-only
+  **/
+
+{
+	"name": "OSHRePub",
+	"dockerComposeFile": "../container/dev/compose.yaml",
+	"service": "app",
+	"remoteUser": "dev",
+	"containerUser": "dev",
+	"updateRemoteUserUID": true,
+	"workspaceFolder": "/home/dev/workspace",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"JakeBecker.elixir-ls"
+			]
+		}
+	}
+}

@@ -1,0 +1,8 @@
+# SPDX-FileCopyrightText: © 2025 Contributors to the OSHRePub project
+# SPDX-License-Identifier: AGPL-3.0-only
+
+# See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+#
+# To ban all spiders from the entire site uncomment the next two lines:
+# Account-agent: *
+# Disallow: /
